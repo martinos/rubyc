@@ -76,6 +76,17 @@ class Rubyc < Thor
     puts counts
   end
 
+  desc :grep, "Grep"
+  def grep(matcher, code = nil)
+    matcher = eval(matcher)
+    if code
+      proc = eval( "Proc.new{|line| l = line; #{code}}" )
+    else
+      proc = nil
+    end
+    puts STDIN.grep(matcher, &proc)
+  end
+
   desc :uniq, "uniq"
   def uniq
     puts STDIN.to_a.uniq
