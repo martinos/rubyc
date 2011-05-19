@@ -66,6 +66,16 @@ class Rubyc < Thor
     puts counts.to_yaml
   end
   
+  desc :sort_by, "Sort by"
+  def sort_by(code = nil)
+    code ||= "line"
+    proc = eval( "Proc.new{|line| l = line; #{code}}" )
+    counts = STDIN.sort_by do |line|
+      proc.call(line)
+    end
+    puts counts
+  end
+
   desc :uniq, "uniq"
   def uniq
     puts STDIN.to_a.uniq
