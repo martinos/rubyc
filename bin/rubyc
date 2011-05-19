@@ -77,14 +77,18 @@ class Rubyc < Thor
   end
 
   desc :grep, "Grep"
-  def grep(matcher, code = nil)
-    matcher = eval(matcher)
-    if code
-      proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    else
-      proc = nil
-    end
-    puts STDIN.grep(matcher, &proc)
+  def grep(pattern, code = nil)
+    pattern = eval(pattern)
+    proc = code ? eval( "Proc.new{|line| l = line; #{code}}" ) : nil
+    puts STDIN.grep(pattern, &proc)
+  end
+
+  desc :scan, "Scan"
+  def scan(pattern, code = nil)
+    pattern = eval(pattern)
+    proc = code ? eval( "Proc.new{|*match| m = match; #{code}}" ) : nil
+    str = STDIN.read
+    str.scan(pattern, &proc)
   end
 
   desc :uniq, "uniq"
