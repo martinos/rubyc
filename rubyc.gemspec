@@ -9,10 +9,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Martin Chabot"]
   s.email       = ["chabotm@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{Adds ruby power to the command line}
-  s.description = %q{Adds ruby power to the command line}
-
+  s.summary     = %q{Adds Ruby's powers to the command line}
+  s.description = %q{Adds Ruby's powers to the command line}
   s.rubyforge_project = "rubyc"
+
+  s.add_dependency "thor"
+  s.add_dependency "minitar"
+  s.add_development_dependency("bundler", "~> 1.0")
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
