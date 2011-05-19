@@ -1,0 +1,2 @@
+= Description
+Adds Ruby's powers to the command line
