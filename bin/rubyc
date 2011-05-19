@@ -1,3 +1,6 @@
+require 'thor'
+require 'yaml'
+
 module ::Enumerable
   def count_by
     self.inject({}) do |memo, elem|
