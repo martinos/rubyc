@@ -1,2 +1,11 @@
 = Description
 Adds Ruby's powers to the command line
+== Example
+  $ ls | rubyc map 'line.upcase'
+  GEMFILE
+  RAILS_VERSION
+  README.RDOC
+  RAKEFILE
+  ACTIONMAILER
+  ACTIONPACK
+  ...
