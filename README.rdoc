@@ -1,6 +1,6 @@
 = Description
 Adds Ruby's powers to the command line.
-Supports many enumerator method applied to STDIN. The current line is represented by the line variable.
+Supports many enumerator methods applied to STDIN. The current line is represented by the line variable.
 == Example
   $ ls | rubyc map 'line.upcase'
   GEMFILE
