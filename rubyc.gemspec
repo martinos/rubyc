@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Martin Chabot"]
   s.email       = ["chabotm@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/martinos/rubyc"
   s.summary     = %q{Adds Ruby's powers to the command line}
   s.description = %q{Adds Ruby's powers to the command line}
   s.rubyforge_project = "rubyc"
