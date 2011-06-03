@@ -34,7 +34,7 @@ class Rubyc < Thor
   def map(code)
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
     STDIN.map do |line|
-      puts proc.call(line).to_s
+      puts proc.call(line.chomp).to_s
     end
   end
 
@@ -43,7 +43,7 @@ class Rubyc < Thor
     code ||= "line"
     proc = eval("Proc.new{|line| l = line; #{code}}")
     sum = STDIN.sum do |line|
-      proc.call(line).to_f
+      proc.call(line.chomp).to_f
     end
     puts sum
   end
@@ -52,7 +52,7 @@ class Rubyc < Thor
   def select(code)
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
     STDIN.map do |line|
-      puts line if proc.call(line)
+      puts line if proc.call(line.chomp)
     end
   end
 
@@ -61,7 +61,7 @@ class Rubyc < Thor
     code ||= "line"
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
     counts = STDIN.count_by do |line|
-      proc.call(line).chomp
+      proc.call(line.chomp)
     end
     puts counts.to_yaml
   end
@@ -71,7 +71,7 @@ class Rubyc < Thor
     code ||= "line"
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
     counts = STDIN.sort_by do |line|
-      proc.call(line)
+      proc.call(line.chomp)
     end
     puts counts
   end
