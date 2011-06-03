@@ -15,7 +15,7 @@ To get help:
   ACTIONPACK
   ...
   
-Here is the currently supported methods:
+Here are the currently supported methods:
   compact      # Remove empty lines
   count_by     # Apply the block to each lines and the occurence of its return value 
   grep         # Enumerable#grep
