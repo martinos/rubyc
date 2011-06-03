@@ -1,9 +1,10 @@
 = Description
 Adds Ruby's powers to the command line.
-Supports many enumerator methods applied to STDIN. The current line is represented by the line variable.
+Supports many enumerator methods applied to STDIN. The current line is represented by the line variable name.
 
 To get help:
   rubyc help
+
 == Example
   $ ls | rubyc map 'line.upcase'
   GEMFILE
@@ -13,3 +14,17 @@ To get help:
   ACTIONMAILER
   ACTIONPACK
   ...
+  
+Here is the currently supported methods:
+  compact      # Remove empty lines
+  count_by     # Apply the block to each lines and the occurence of its return value 
+  grep         # Enumerable#grep
+  help [TASK]  # Describe available tasks or one specific task
+  map          # Apply Enumerable#map on each line
+  merge        # Merge consecutive lines
+  scan         # String#scan
+  select       # Enumerable#select
+  sort_by      # Emumerable#sort_by
+  sum          # Rails Enumerable#sum
+  uniq         # uniq
+  
