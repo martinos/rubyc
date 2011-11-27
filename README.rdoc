@@ -17,7 +17,7 @@ To get help:
   
 Here are the currently supported methods:
   compact      # Remove empty lines
-  count_by     # Apply the block to each lines and the occurence of its return value 
+  count_by     # Count the number of lines that have the same property. The property is defined by the return value of the given the block.
   grep         # Enumerable#grep
   help [TASK]  # Describe available tasks or one specific task
   map          # Apply Enumerable#map on each line
