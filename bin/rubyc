@@ -11,6 +11,7 @@ module ::Enumerable
     end
   end
 
+  # This method was borrowed from ActiveSupport code
   def group_by
     self.inject({}) do |memo, elem|
       key = yield elem
@@ -19,7 +20,8 @@ module ::Enumerable
       memo
     end
   end
-
+  
+  # File activesupport/lib/active_support/core_ext/enumerable.rb, line 57
   def sum(identity = 0, &block)
     if block_given?
       map(&block).sum(identity)
