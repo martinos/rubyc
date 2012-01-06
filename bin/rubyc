@@ -53,7 +53,7 @@ class Rubyc < Thor
   desc :select, "Apply Enumerable#select on each line"
   def select(code)
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    STDIN.map do |line|
+    STDIN.each do |line|
       puts line if proc.call(line.chomp)
     end
   end
