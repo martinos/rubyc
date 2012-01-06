@@ -32,6 +32,7 @@ module ::Enumerable
 end
 
 class Rubyc < Thor
+  STDOUT.sync
   desc :map, "Apply Enumerable#map on each line"
   def map(code)
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
