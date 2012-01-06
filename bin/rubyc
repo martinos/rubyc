@@ -100,7 +100,7 @@ class Rubyc < Thor
 
   desc :compact, "Remove empty lines"
   def compact
-    puts STDIN.select{|line| line.strip != ""}
+    STDIN.each{|line| puts line if line.strip != ""}
   end
 
   desc :merge, "Merge consecutive lines"
