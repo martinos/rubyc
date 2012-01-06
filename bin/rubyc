@@ -32,11 +32,11 @@ module ::Enumerable
 end
 
 class Rubyc < Thor
-  STDOUT.sync
+  $stdout.sync = true
   desc :map, "Apply Enumerable#map on each line"
   def map(code)
     proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    STDIN.map do |line|
+    $stdin.each do |line|
       puts proc.call(line.chomp).to_s
     end
   end
@@ -45,7 +45,7 @@ class Rubyc < Thor
   def sum(code = nil)
     code ||= "line"
     proc = eval("Proc.new{|line| l = line; #{code}}")
-    sum = STDIN.sum do |line|
+    sum = $stdin.sum do |line|
       proc.call(line.chomp).to_f
     end
     puts sum
@@ -53,8 +53,8 @@ class Rubyc < Thor
 
   desc :select, "Apply Enumerable#select on each line"
   def select(code)
-    proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    STDIN.each do |line|
+    proc = eval("Proc.new{|line| l = line; #{code}}")
+    $stdin.each do |line|
       puts line if proc.call(line.chomp)
     end
   end
@@ -62,8 +62,8 @@ class Rubyc < Thor
   desc :count_by, "Count the number of lines that have the same property. The property is defined by the return value of the given the block"
   def count_by(code = nil)
     code ||= "line"
-    proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    counts = STDIN.count_by do |line|
+    proc = eval("Proc.new{|line| l = line; #{code}}")
+    counts = $stdin.count_by do |line|
       proc.call(line.chomp)
     end
     puts counts.to_yaml
@@ -72,8 +72,8 @@ class Rubyc < Thor
   desc :sort_by, "Sort by"
   def sort_by(code = nil)
     code ||= "line"
-    proc = eval( "Proc.new{|line| l = line; #{code}}" )
-    counts = STDIN.sort_by do |line|
+    proc = eval("Proc.new{|line| l = line; #{code}}")
+    counts = $stdin.sort_by do |line|
       proc.call(line.chomp)
     end
     puts counts
@@ -82,15 +82,15 @@ class Rubyc < Thor
   desc :grep, "Grep"
   def grep(pattern, code = nil)
     pattern = eval(pattern)
-    proc = code ? eval( "Proc.new{|line| l = line; #{code}}" ) : nil
-    puts STDIN.grep(pattern, &proc)
+    proc = code ? eval("Proc.new{|line| l = line; #{code}}") : nil
+    puts $stdin.grep(pattern, &proc)
   end
 
   desc :scan, "Scan"
   def scan(pattern, code = nil)
     pattern = eval(pattern)
-    proc = code ? eval( "Proc.new{|*match| m = match; #{code}}" ) : nil
-    str = STDIN.read
+    proc = code ? eval("Proc.new{|*match| m = match; #{code}}") : nil
+    str = $stdin.read
     str.scan(pattern, &proc)
   end
 
@@ -106,7 +106,7 @@ class Rubyc < Thor
 
   desc :merge, "Merge consecutive lines"
   def merge(nb_lines, sep = ",")
-    STDIN.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep) }
+    STDIN.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep)}
   end
 end
 
