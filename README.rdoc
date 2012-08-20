@@ -1,4 +1,4 @@
-= Description{<img src="https://secure.travis-ci.org/[martinos]/[rubyc].png" />}[http://travis-ci.org/[martinos]/[rubyc]}
+= Description{<img src="https://secure.travis-ci.org/[martinos]/[rubyc].png" />}[http://travis-ci.org/[martinos]/[rubyc]]
 Adds Ruby's powers to the command line.
 Supports many enumerator methods applied to STDIN. The current line is represented by the "line" variable name or it's shorter alias 'l'.
 
