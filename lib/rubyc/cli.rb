@@ -95,19 +95,17 @@ module Rubyc
 
     desc :uniq, "uniq"
     def uniq
-      puts STDIN.to_a.uniq
+      puts $stdin.to_a.uniq
     end
 
     desc :compact, "Remove empty lines"
     def compact
-      STDIN.each{|line| puts line if line.chomp! != ""}
+      $stdin.each{ |line| puts line if line.chomp! != ""}
     end
 
     desc :merge, "Merge consecutive lines"
     def merge(nb_lines, sep = ",")
-      STDIN.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep)}
+      $stdin.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep)}
     end
   end
-
-
 end

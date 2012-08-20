@@ -14,3 +14,5 @@ Feature: My bootstrapped app kinda works
       |grep|
       |compact|
       |count_by|
+      |uniq|
+      |merge|

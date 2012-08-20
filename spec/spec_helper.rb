@@ -4,8 +4,6 @@ require 'rubyc'
 require 'minitest/spec'
 require 'minitest/autorun'
 
-
-
 module SpecHelper
   def validate_attr(fields, expected)
     fields.each_with_index do |field, index| 

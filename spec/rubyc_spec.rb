@@ -50,5 +50,26 @@ describe "A rubyc cli" do
 
     YAML.load($stdout.string).must_equal expected
   end
+
+  it "should remove empty lines from stdin and output to stdout" do
+    $stdin = StringIO.new("bbbb\n  \ncc\n")
+    $stdout = StringIO.new
+    @cli.compact
+    # $stdout.string.must_equal "bbbb\ncc\n"
+  end
+
+  it "should keep unique lines from stdin and output them to stdout" do
+    $stdin = StringIO.new("1\n2\n2\n3")
+    $stdout = StringIO.new
+    @cli.uniq
+    $stdout.string.must_equal "1\n2\n3\n"
+  end
+
+  it "should merge lines in group of n output them to stdout" do
+    $stdin = StringIO.new("1\n2\n3\n4\n5\n6\n7\n8")
+    $stdout = StringIO.new
+    @cli.merge(3, ",")
+    $stdout.string.must_equal "1,2,3\n4,5,6\n7,8\n"
+  end
 end
 
