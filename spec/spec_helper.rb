@@ -5,10 +5,13 @@ require 'minitest/spec'
 require 'minitest/autorun'
 
 module SpecHelper
-  def validate_attr(fields, expected)
-    fields.each_with_index do |field, index| 
-      field.name.must_equal(expected[index][0])
-      field.value.must_equal(expected[index][1])
-    end
+  def local_io(in_str)
+    old_stdin, old_stdout = $stdin, $stdout 
+    $stdin = StringIO.new(in_str)
+    $stdout = StringIO.new
+    yield
+    out_str = $stdout.string
+    $stdin, $stdout = old_stdin, old_stdout
+    out_str
   end
 end
