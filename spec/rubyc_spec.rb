@@ -45,7 +45,6 @@ describe "A rubyc cli" do
 
   it "should count_by an algorithm and output to stdout" do
     out_str = local_io("bbbb\nbbb\ncc\ndddd") do
-      $stdout = StringIO.new
       @cli.count_by('l =~ /^(..)/;$1') 
     end  
     expected = {"bb" => 2, "cc" => 1, "dd" => 1}
