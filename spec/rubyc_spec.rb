@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require 'rubyc/cli'
 
 include SpecHelper
+
 describe "A rubyc cli" do
   before do
     @cli = Rubyc::CLI.new
