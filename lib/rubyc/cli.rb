@@ -31,6 +31,15 @@ module Rubyc
   end
 
   class CLI < Thor
+    class_option :require, :aliases => '-r'
+    
+    def initialize(*args)
+      super
+      libs = options[:require] ? options[:require].strip.split(":") : []
+      libs.each {|lib| require lib}
+    end
+    
+    
     $stdout.sync = true
     desc :map, "Apply Enumerable#map on each line"
     def map(code)
