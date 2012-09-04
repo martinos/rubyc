@@ -3,7 +3,7 @@ Adds Ruby's power to the command line.
 ## Introduction
 Sometimes we need to process files or stream at the bash prompt for filtering, parsing, calculating etc.  Unix offers many tools (grep, sed, awk etc.) for doing those actions. However, their usage are not easy to remember besause of their cryptic syntax. They also use Unix regexes which are more limited than ruby's ones.
 
-The Ruby interpreter offers us many command line options for processing files or pipes. The -p, -n options allows us to process lines one at a time. But their syntaxes art not really easy to remember, since it uses non Rubyish syntax, using $_.
+The Ruby interpreter offers us many command line options for processing files or pipes. The -p, -n options allows us to process lines one at a time. But their syntaxes are not really easy to remember, since it uses non Rubyish syntax, using $_, gets and print kernel methods.
 
 For this reason I have created Rubyc, which stands for Ruby Command line.
 
@@ -14,11 +14,18 @@ To get help:
 
 ## Examples
 ### Problem 1
-Capitalize stdin
+How do you capitalize all lines that comes from stdin?
+The bash way: 
 ``` bash
 $ ls | awk '{print toupper($0)}'
-$ ls | rubyc map 'line.upcase'
+```
+The Ruby interpreter with options way:
+``` bash
 $ ls | ruby -pe '$_ = $_.upcase'
+```
+The Rubyc way:
+``` bash
+ls | rubyc map 'line.upcase'
 ```
 Here are the currently supported methods:
 ```
