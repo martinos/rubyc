@@ -6,15 +6,16 @@ To get help:
   rubyc help
 
 ## Examples
-  $ ls | rubyc map 'line.upcase'
-  GEMFILE
-  RAILS_VERSION
-  README.RDOC
-  RAKEFILE
-  ACTIONMAILER
-  ACTIONPACK
-  ...
-  
+``` bash
+$ ls | rubyc map 'line.upcase'
+GEMFILE
+RAILS_VERSION
+README.RDOC
+RAKEFILE
+ACTIONMAILER
+ACTIONPACK
+...
+```
 Here are the currently supported methods:
   compact      # Remove empty lines
   count_by     # Count the number of lines that have the same property. The property is defined by the return value of the given the block.
