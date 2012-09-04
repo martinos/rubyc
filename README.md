@@ -1,11 +1,11 @@
-= Description {<img src="https://secure.travis-ci.org/martinos/rubyc.png" />}[http://travis-ci.org/martinos/rubyc]
+# Description [![Build Status](https://secure.travis-ci.org/martinos/rubyc.png?branch=master)](http://travis-ci.org/martinos/rubyc)
 Adds Ruby's power to the command line.
 Supports many enumerator methods applied to STDIN. The current line is represented by the "line" variable name or it's shorter alias 'l'.
 
 To get help:
   rubyc help
 
-== Examples
+## Examples
   $ ls | rubyc map 'line.upcase'
   GEMFILE
   RAILS_VERSION
