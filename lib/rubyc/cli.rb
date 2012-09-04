@@ -1,4 +1,6 @@
+require 'yaml'
 require 'thor'
+
 module Rubyc
   module ::Enumerable
     def count_by
