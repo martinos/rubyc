@@ -11,8 +11,9 @@ For this reason, I have created Rubyc, which stands for Ruby Command line. Rubyc
 gem install rubyc
 ```
 ## Examples
-### Problem 1
-How do you capitalize all lines that comes from stdin?
+### Use Case: Upcasing
+Upcase what is comming from stdin.
+
 The awk way: 
 ``` bash
 $ ls | awk '{print toupper($0)}'
@@ -25,6 +26,32 @@ The Rubyc way:
 ``` bash
 ls | rubyc map 'line.upcase'
 ```
+### Use Case: CSV
+Extract columns 2 and 3 of a csv file that has columns containing commas. Note that, in that case the "cut" shell command does not work.
+
+The shell way
+``` bash
+$ ???
+```
+The Ruby interpreter with options way:
+``` bash
+$ cat file1.csv | ruby -pe 'require "csv";csv = CSV.parse_line($_); $_ = [csv[2], csv[4]].to_s + "\n"'
+```
+The Rubyc way:
+``` bash
+$ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[2], csv[3]]'
+```
+NOTE: -r is an alias for the --require= option which 
+### Problem 3 Colorize Stderr
+``` bash
+$ ???
+```
+The Rubyc way:
+``` bash
+$ rake > >(rubyc map -r colorize 'l.red')
+```
+
+
 Here are the currently supported methods:
 ```
 compact      # Remove empty lines
