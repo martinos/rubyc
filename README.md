@@ -26,7 +26,7 @@ The Rubyc way:
 ``` bash
 ls | rubyc map 'line.upcase'
 ```
-### Use Case: CSV
+### Use Case: CSV File Processing
 Extract columns 2 and 3 of a csv file that has columns containing commas. Note that, in that case the "cut" shell command does not work.
 
 The shell way
