@@ -44,7 +44,7 @@ $ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[2], csv[3]]'
 NOTE: -r is an alias for the --require= option which 
 ### Problem 3 Colorize Stderr
 ``` bash
-$ ???
+$ rake > >(???)
 ```
 The Rubyc way:
 ``` bash
