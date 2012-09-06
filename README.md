@@ -52,6 +52,20 @@ The Rubyc way:
 ``` bash
 $ rake 2> >(rubyc map -r colorize 'l.red')
 ```
+### Problem 4 Counting insertion in each database table
+Extract the number of insertions per table in a rails log file
+``` bash
+$ ???
+```
+``` Rubyc
+$ cat development.log | rubyc count_by 'l =~ /INSERT INTO \"(\w+)\"/; $1'
+--- 
+trunk_groups: 14
+ld_call_records: 18
+ld_provider_rates: 102191
+cdrs: 47
+tf_call_records: 18
+```
 
 
 Here are the currently supported methods:
