@@ -16,8 +16,8 @@ module Rubyc
     $stdout.sync = true
     desc :map, "Apply Enumerable#map on each line"
     def map(code)
-      proc = eval( "Proc.new{|(line,index)| l = line; lnum = index + 1;#{code}}" )
-      $stdin.each_with_index do |line, index|
+      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
+      $stdin.each_line.each_with_index do |line, index|
         puts proc.call(line.chomp, index).to_s
       end
     end
