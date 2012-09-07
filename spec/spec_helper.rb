@@ -15,3 +15,38 @@ module SpecHelper
     out_str
   end
 end
+
+
+# require 'colorize'
+# 
+# module ColorizeIO
+#   def puts(str = "")
+#     red = "\\e[31m"
+#     blank = "\\e[0m"
+#     green = "\\e[32m"
+#     blue = "\\e[34m"
+#     magenta = "\\e[35m"
+#     # 
+#     url_regex = %r{(\\S*.rb):(\\d+)(.*)}
+#     str.each_line do |line|
+#       if line =~ url_regex
+#         file_name = $1
+#         line_number = $2
+#         complement = $3
+#         if File.exist? file_name
+#           full_path = File.expand_path(file_name)
+#           app_trace = full_path.match(ROOT_PATH) && full_path !~ /vendor/
+#           new_line = "#{blue}txmt://open?url=file://#{File.dirname(full_path)}/#{red if app_trace }#{File.basename(full_path)}#{blank}&line=#{line_number
+#     }#{complement}"
+#         else
+#           new_line = line
+#         end
+#       else
+#          new_line = line
+#       end
+#         super(new_line + "\\n")
+#     end
+#   end
+# end
+# 
+# MiniTest::Unit.output.extend ColorizeIO
