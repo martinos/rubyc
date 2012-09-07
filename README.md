@@ -44,7 +44,7 @@ $ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[2], csv[3]]'
 ```
 NOTE: -r is an alias for the --require= option indicates the gems needed for the exectution of the script. Note that for multiple require, gems must me separated with a :.
 
-### Problem 3 Colorize Stderr
+### Use Case: Colorize Stderr
 The shell way:
 ``` bash
 $ rake 2> >(while read line;do echo -e "\033[31m$line\033[0m";done)
@@ -53,7 +53,7 @@ The Rubyc way:
 ``` bash
 $ rake 2> >(rubyc map -r colorize 'l.red')
 ```
-### Problem 4 Counting insertion in database tables
+### Use Case: Counting insertion in database tables
 Extract the number of insertions per table in a rails log file.
 
 The shell way:
