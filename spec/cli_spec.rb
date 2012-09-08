@@ -11,9 +11,9 @@ describe "A rubyc cli" do
 
   it "should map stdin to stdout" do
     out_str = local_io("first\nsecond") do
-      @cli.map('lnum.to_s + " " + l.upcase')
+      @cli.map('"LineNum=#{num} Index=#{index}: #{l.upcase}"')
     end
-    out_str.must_equal "1 FIRST\n2 SECOND\n"
+    out_str.must_equal "LineNum=1 Index=0: FIRST\nLineNum=2 Index=1: SECOND\n"
   end
 
   it "should select line from stdin and send it to stdout" do
