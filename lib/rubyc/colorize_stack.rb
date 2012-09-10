@@ -32,52 +32,6 @@ module MiniTest
       end
     end
   end
-  class StackColor < Delegator
-    def initialize(obj)
-      super        
-      @delegate_obj = obj
-    end
-
-    def __getobj__
-      @delegate_obj
-    end
-
-    def __setobj__(obj)
-      @delegate_obj = obj
-    end
-    
-    def write(str = "")
-      red = "\e[31m"
-      clear = "\e[0m"
-      green = "\e[32m"
-      blue = "\e[34m"
-      magenta = "\e[35m"
-      clear = "\e[0m"
-      puts " sadfasdfasdfSsadfkh 9009999998"
-      # test_0001_should_map_stdin_to_stdout(A rubyc cli) [./spec/cli_spec.rb:16]:
-      # /Users/martinchabot/dev/my_gems/rubyc/spec/cli_spec.rb:16:in `test_0001_should_map_stdin_to_stdout'
-      url_regex = /(.*?)([.\w\/]*.rb):(\d+)(.*)/
-      str.each_line do |line|
-        if line =~ url_regex
-          prefix = $1
-          file_name = $2
-          line_number = $3
-          complement = $4
-          if File.exist? file_name
-            full_path = File.expand_path(file_name)
-            app_trace = full_path.match(Dir.pwd) && full_path !~ /vendor/
-            new_line = "#{prefix}#{blue}txmt://open?url=file://#{File.dirname(full_path)}/#{clear}#{red if app_trace }#{File.basename(full_path)}#{clear if app_trace}&line=#{line_number
-      }#{complement}\n"
-          else
-            new_line = line
-          end
-        else
-           new_line = line
-        end
-          @delegate_obj.write(new_line)
-      end
-    end
-  end
 end
 
 if __FILE__ == $0 
