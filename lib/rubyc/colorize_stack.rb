@@ -92,17 +92,17 @@ class ColorizeStackTest < MiniTest::Unit::TestCase
     str = <<EOF
 test_0003_should_return_the_value_from_on_key(AProductionBafFileSpec::AStructureSpec):
 RuntimeError: THIS IS A STACKTRACE TEST
-    ./lib/coco_gem/field.rb:19:in `extract_data_from_raw'
-    ./lib/coco_gem/field.rb:9:in `initialize'
-    ./lib/coco_gem/field.rb:44:in `new'
-    ./lib/coco_gem/field.rb:44:in `parse'
-    ./lib/coco_gem/structure.rb:18:in `parse'
-    ./lib/coco_gem/structure.rb:17:in `map'
-    ./lib/coco_gem/structure.rb:17:in `parse'
-    ./lib/coco_gem/record.rb:26:in `parse'
-    ./lib/coco_gem/helper.rb:39:in `scanned_string'
-    ./lib/coco_gem/record.rb:16:in `parse'
-    ./lib/coco_gem/file.rb:27:in `read'
+    ./lib/rubyc/field.rb:19:in `extract_data_from_raw'
+    ./lib/rubyc/field.rb:9:in `initialize'
+    ./lib/rubyc/field.rb:44:in `new'
+    ./lib/rubyc/field.rb:44:in `parse'
+    ./lib/rubyc/structure.rb:18:in `parse'
+    ./lib/rubyc/structure.rb:17:in `map'
+    ./lib/rubyc/structure.rb:17:in `parse'
+    ./lib/rubyc/record.rb:26:in `parse'
+    ./lib/rubyc/helper.rb:39:in `scanned_string'
+    ./lib/rubyc/record.rb:16:in `parse'
+    ./lib/rubyc/file.rb:27:in `read'
     ./spec/file_spec.rb:8
     /Users/martinos/.rvm/gems/ruby-1.8.7-p352/gems/minitest-1.7.2/lib/minitest/spec.rb:118:in `instance_eval'
     /Users/martinos/.rvm/gems/ruby-1.8.7-p352/gems/minitest-1.7.2/lib/minitest/spec.rb:118:in `setup'
