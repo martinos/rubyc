@@ -64,11 +64,10 @@ The Rubyc way:
 ``` bash
 $ cat development.log | rubyc count_by 'l =~ /INSERT INTO \"(\w+)\"/; $1'
 --- 
-trunk_groups: 14
-ld_call_records: 18
-ld_provider_rates: 102191
-cdrs: 47
-tf_call_records: 18
+users: 14
+adresses: 18
+objects: 102191
+phone_numbers: 47
 ```
 
 
