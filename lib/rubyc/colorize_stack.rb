@@ -45,18 +45,18 @@ class ColorizeStackTest < MiniTest::Unit::TestCase
     str = <<EOF
 test_0003_should_return_the_value_from_on_key(AProductionBafFileSpec::AStructureSpec):
 RuntimeError: THIS IS A STACKTRACE TEST
-    ./lib/rubyc/field.rb:19:in `extract_data_from_raw'
-    ./lib/rubyc/field.rb:9:in `initialize'
-    ./lib/rubyc/field.rb:44:in `new'
-    ./lib/rubyc/field.rb:44:in `parse'
-    ./lib/rubyc/structure.rb:18:in `parse'
-    ./lib/rubyc/structure.rb:17:in `map'
-    ./lib/rubyc/structure.rb:17:in `parse'
-    ./lib/rubyc/record.rb:26:in `parse'
-    ./lib/rubyc/helper.rb:39:in `scanned_string'
-    ./lib/rubyc/record.rb:16:in `parse'
-    ./lib/rubyc/file.rb:27:in `read'
-    ./spec/file_spec.rb:8
+    ./lib/rubyc/colorize_stack.rb:19:in `extract_data_from_raw'
+    ./lib/rubyc/colorize_stack.rb:9:in `initialize'
+    ./lib/rubyc/colorize_stack.rb:44:in `new'
+    ./lib/rubyc/colorize_stack.rb:44:in `parse'
+    ./lib/rubyc/core_extensions.rb:18:in `parse'
+    ./lib/rubyc/core_extensions.rb:17:in `map'
+    ./lib/rubyc/core_extensions.rb:17:in `parse'
+    ./lib/rubyc/core_extensions.rb:26:in `parse'
+    ./lib/rubyc/core_extensions.rb:39:in `scanned_string'
+    ./lib/rubyc/core_extensions.rb:16:in `parse'
+    ./lib/rubyc/core_extensions.rb:27:in `read'
+    ./spec/spec_helper.rb:8
     /Users/martinos/.rvm/gems/ruby-1.8.7-p352/gems/minitest-1.7.2/lib/minitest/spec.rb:118:in `instance_eval'
     /Users/martinos/.rvm/gems/ruby-1.8.7-p352/gems/minitest-1.7.2/lib/minitest/spec.rb:118:in `setup'
     /Users/martinos/.rvm/gems/ruby-1.8.7-p352/gems/minitest-1.7.2/lib/minitest/unit.rb:713:in `run'
@@ -72,21 +72,17 @@ RuntimeError: THIS IS A STACKTRACE TEST
 5 tests, 0 assertions, 0 failures, 5 errors, 0 skips
 EOF
   
-    stdout = StringIO.new
-    Minitest::ColorizeStack
-    stdout.extend Minitest::ColorizeStack
-    stdout.write(str)
-    stdout.print str
-    str = stdout.string
-    red = "\e[31m"
-    clear = "\e[0m"
-    green = "\e[32m"
-    blue = "\e[34m"
-    magenta = "\e[35m"
+    out = StringIO.new
+    out.extend MiniTest::ColorizeStack
+    out.write(str)
+    str = out.string
+    red = "\e\\[31m"
+    clear = "\e\\[0m"
+    green = "\e\\[32m"
+    blue = "\e\\[34m"
+    magenta = "\e\\[35m"
 
-    puts "File exist tab"  if File.exist?("./lib/coco_gem/field.rb")
-    assert_match %{#{blue}txmt://open?url=file:///.*/lib/coco_gem/#{clear}#{red}field.rb#{clear}:19:in `extract_data_from_raw'}, str
-    
+    assert_match %r{txmt://open\?url=file:///Users/martinchabot/dev/my_gems/rubyc/lib/rubyc/(.*)colorize_stack.rb(.*)line=19:in `extract_data_from_raw}, str
   end
 end
 
