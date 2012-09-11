@@ -8,6 +8,7 @@ require 'cucumber/rake/task'
 
 Rake::TestTask.new do |t|
   t.pattern = "spec/*_spec.rb"
+  t.libs << 'spec'
 end
 
 Cucumber::Rake::Task.new(:features) do |t|

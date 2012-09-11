@@ -1,5 +1,4 @@
-require File.expand_path('../spec_helper', __FILE__)
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'spec_helper'
 require 'rubyc/cli'
 
 include SpecHelper
