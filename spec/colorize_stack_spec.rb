@@ -42,6 +42,6 @@ EOF
     green = "\e\\[32m"
     blue = "\e\\[34m"
     magenta = "\e\\[35m"
-    str.must_match %r{txmt:\/\/open\?url=file:\/\/\/Users\/martinchabot\/dev\/my_gems\/rubyc\/lib\/rubyc\/(.*)colorize_stack.rb(.*)line=19:in `extract_data_from_raw}
+    str.must_match %r{txmt://open\?url=file:///(.*)rubyc/lib/rubyc/(.*)colorize_stack.rb(.*)line=19:in `extract_data_from_raw}
   end
 end
