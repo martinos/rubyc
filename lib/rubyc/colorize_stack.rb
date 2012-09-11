@@ -33,11 +33,5 @@ module MiniTest
   end
 end
 
-if __FILE__ == $0 
-  
-  ### Test does not pass yet
-end
-
-
 
 
