@@ -16,7 +16,7 @@ module Rubyc
     $stdout.sync = true
     desc :map, "Apply Enumerable#map on each line"
     def map(code)
-      proc = eval( "Proc.new{|line,index| l = line; num = index + 1;#{code}}" )
+      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
       $stdin.each_line.each_with_index do |line, index|
         puts proc.call(line.chomp, index).to_s
       end
@@ -34,9 +34,9 @@ module Rubyc
 
     desc :select, "Apply Enumerable#select on each line"
     def select(code)
-      proc = eval("Proc.new{|line| l = line; #{code}}")
-      $stdin.each do |line|
-        puts line if proc.call(line.chomp)
+      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
+      $stdin.each_line.each_with_index do |line, index|
+        puts line if proc.call(line.chomp, index)
       end
     end
 

@@ -10,16 +10,16 @@ describe "A rubyc cli" do
 
   it "should map stdin to stdout" do
     out_str = local_io("first\nsecond") do
-      @cli.map('"LineNum=#{num} Index=#{index}: #{l.upcase}"')
+      @cli.map('"LineNum=#{lnum} Index=#{index}: #{l.upcase}"')
     end
     out_str.must_equal "LineNum=1 Index=0: FIRST\nLineNum=2 Index=1: SECOND\n"
   end
 
   it "should select line from stdin and send it to stdout" do
-    out_str = local_io("first\nsecond\nthird") do
-      @cli.select('l =~ /third/')
+    out_str = local_io("John Doe\nBlack Jack\nDr Dolittle\nCracker Jack") do
+      @cli.select('l =~ /Jack/ && lnum == 2 && index == 1')
     end
-    out_str.must_equal "third\n"
+    out_str.must_equal "Black Jack\n"
   end
 
   it "should sum line from stdin and send it to stdout" do
