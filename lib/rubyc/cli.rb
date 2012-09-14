@@ -27,7 +27,7 @@ module Rubyc
       code ||= "line"
       proc = eval("Proc.new{|line| l = line; #{code}}")
       sum = $stdin.sum do |line|
-        proc.call(line.chomp).to_f
+        proc.call(line.chomp)
       end
       puts sum
     end

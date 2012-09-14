@@ -26,7 +26,7 @@ describe "A rubyc cli" do
     out_str = local_io("1\n2\nthird\n4") do
       @cli.sum('l.to_i * 2')
     end
-    out_str.must_equal "14.0\n"
+    out_str.must_equal "14\n"
   end
 
   it "should sort by stdin and send the result to stdout" do
