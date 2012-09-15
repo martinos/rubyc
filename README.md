@@ -6,11 +6,17 @@ Sometimes we need to process files or streams at the bash prompt for filtering, 
 
 The Ruby interpreter offers us many command line options for processing files or pipes. The -p, -n options in combination of the -e option, allows us to process lines one at a time. Personnaly I never remember how to use them.
 
-For this reason, I have created Rubyc, which stands for Ruby Command line. Rubyc supports many enumerator methods applied to STDIN. The current line is represented by the "line" variable name or it's shorter alias 'l'.
+For this reason, I have created Rubyc, which stands for Ruby Command line.
 ## Installation
 ```
 gem install rubyc
 ```
+## Usage
+Rubys supports some Enumerable methods applied to each line to the stdin stream. 
+
+Rubyc gives you the 'line' variable and it's shorter alias 'l' to represent the current line on which Rubyc is iterating. 
+
+The 'index' and 'lnum' variable are also available to you. The 'index' variable represents the index of the line starting at 0 whereas 'lnum' is the line number which starts at 1. 
 ## Examples
 ### Use Case: Upcasing
 Upcase what is comming from stdin.
