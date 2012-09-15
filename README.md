@@ -14,9 +14,9 @@ gem install rubyc
 ## Usage
 Rubys supports some Enumerable methods applied to each line to the stdin stream. 
 
-Rubyc gives you the 'line' variable and it's shorter alias 'l' to represent the current line on which Rubyc is iterating. 
+Rubyc gives you the '_line_' variable and it's shorter alias '_l_' to represent the current line on which Rubyc is iterating. 
 
-The 'index' and 'lnum' variable are also available to you. The 'index' variable represents the index of the line starting at 0 whereas 'lnum' is the line number which starts at 1. 
+The '_index_' and '_lnum_' variable are also available to you. The '_index_' variable represents the index of the line starting at 0 whereas '_lnum_' is the line number which starts at 1. 
 ## Examples
 ### Use Case: Upcasing
 Upcase what is comming from stdin.
