@@ -1,7 +1,7 @@
 module Enumerable
-  def count_by
+  def count_by(&proc)
     self.inject({}) do |memo, elem|
-      key = yield elem
+      key = proc.call elem
       memo[key] ||= 0
       memo[key] += 1
       memo

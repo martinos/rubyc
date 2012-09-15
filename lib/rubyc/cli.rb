@@ -10,54 +10,47 @@ module Rubyc
       super
       libs = options[:require] ? options[:require].strip.split(":") : []
       libs.each {|lib| require lib}
-    end
-    
-    
-    $stdout.sync = true
-    desc :map, "Apply Enumerable#map on each line"
-    def map(code)
-      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
-      $stdin.each_line.each_with_index do |line, index|
-        puts proc.call(line.chomp, index).to_s
-      end
+      $stdout.sync = true
     end
 
-    desc :sum, "Calculate the sum of Numeric expressed on each line"
-    def sum(code = nil)
-      code ||= "line"
-      proc = eval("Proc.new{|line| l = line; #{code}}")
-      sum = $stdin.sum do |line|
-        proc.call(line.chomp)
+    desc :map, "Apply Enumerable#map on each line"
+    def map(code)
+      proc = proc_code code
+      in_iter.each do |arg|
+        puts proc.call(arg).to_s
       end
-      puts sum
     end
 
     desc :select, "Apply Enumerable#select on each line"
     def select(code)
-      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
-      $stdin.each_line.each_with_index do |line, index|
-        puts line if proc.call(line.chomp, index)
+      proc = proc_code code
+      in_iter.each do |line, index|
+        puts line if proc.call(line, index)
       end
+    end
+    
+    desc :sum, "Calculate the sum of Numeric expressed on each line"
+    def sum(code = nil)
+      code ||= "line"
+      proc = proc_code code
+      puts in_iter.sum(&proc)
     end
 
     desc :count_by, "Count the number of lines that have the same property. The property is defined by the return value of the given the block"
     def count_by(code = nil)
       code ||= "line"
-      proc = eval("Proc.new{|line| l = line; #{code}}")
-      counts = $stdin.count_by do |line|
-        proc.call(line.chomp)
-      end
-      puts counts.to_yaml
+      proc = proc_code code
+      puts in_iter.count_by(&proc).to_yaml
     end
 
     desc :sort_by, "Sort by"
     def sort_by(code = nil)
       code ||= "line"
       proc = eval("Proc.new{|line| l = line; #{code}}")
-      counts = $stdin.sort_by do |line|
+      sorted = $stdin.lines.sort_by do |line|
         proc.call(line.chomp)
       end
-      puts counts
+      puts sorted
     end
 
     desc :grep, "Grep"
@@ -88,6 +81,23 @@ module Rubyc
     desc :merge, "Merge consecutive lines"
     def merge(nb_lines, sep = ",")
       $stdin.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep)}
+    end
+    
+    private
+    
+    def in_iter
+      $stdin.lines.each_with_index
+    end
+    
+    def proc_code(code)
+      str = <<EOF
+      Proc.new  do |(line,index)| 
+        l = line = line.chomp
+        lnum = index + 1
+        #{code}
+      end
+EOF
+      eval(str)
     end
   end
 end
