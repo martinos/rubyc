@@ -4,7 +4,7 @@ Adds Ruby's power to the command line.
 ## Introduction
 Sometimes we need to process files or streams at the bash prompt for filtering, parsing, calculating etc.  Unix offers many tools for doing those actions: grep, sed, awk etc. However, their usage are not easy to remember besause of their cryptic syntax. They also use Unix regexes which are more limited than Ruby's ones.
 
-The Ruby interpreter offers us many command line options for processing files or pipes. The -p, -n options in combination of the -e option, allows us to process lines one at a time. Personnaly I never remember how to use them.
+The Ruby interpreter offers us some command line options for processing files or pipes. The -p, -n options in combination of the -e option, allows us to process lines one at a time. Personnaly I never remember how to use them.
 
 For this reason, I have created Rubyc, which stands for Ruby Command line.
 ## Installation
