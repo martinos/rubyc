@@ -64,7 +64,7 @@ Extract the number of insertions per table in a rails log file.
 
 The shell way:
 ``` bash
-$ ???
+$ cat development.log | grep "INSERT INTO" | sed 's/\(.*\)INSERT INTO..\([a-z]*\).*/ \2 /' | sort | uniq -c
 ```
 The Rubyc way:
 ``` bash
