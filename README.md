@@ -42,7 +42,7 @@ $ ???
 ```
 The Ruby interpreter with options way:
 ``` bash
-$ cat file1.csv | ruby -pe 'require "csv";csv = CSV.parse_line($_); $_ = [csv[2], csv[4]].to_s + "\n"'
+$ cat file1.csv | ruby -pe 'require "csv";csv = CSV.parse_line($_); $_ = [csv[2], csv[3]].to_s + "\n"'
 ```
 The Rubyc way:
 ``` bash
