@@ -12,3 +12,4 @@ Feature: rubyc helps you with the shell
       |count_by|
       |uniq|
       |merge|
+      |reject|
