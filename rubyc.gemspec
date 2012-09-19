@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Adds Ruby's powers to the command line}
   s.rubyforge_project = "rubyc"
 
-  s.add_dependency "thor"
+  s.add_dependency "thor", "~> 0.16"
   s.add_development_dependency 'rake'
   s.add_development_dependency "bundler", "~> 1.0"
   s.add_development_dependency 'minitest'
