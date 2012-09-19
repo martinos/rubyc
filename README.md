@@ -42,11 +42,11 @@ $ ???
 ```
 The Ruby interpreter with options way:
 ``` bash
-$ cat file1.csv | ruby -pe 'require "csv";csv = CSV.parse_line($_); $_ = [csv[2], csv[3]].to_s + "\n"'
+$ cat file1.csv | ruby -pe 'require "csv";csv = CSV.parse_line($_); $_ = [csv[1], csv[2]].to_s + "\n"'
 ```
 The Rubyc way:
 ``` bash
-$ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[2], csv[3]]'
+$ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[1], csv[2]]'
 ```
 NOTE: -r is an alias for the --require= option indicates the gems needed for the exectution of the script. Note that for multiple require, gems must me separated with a :.
 
