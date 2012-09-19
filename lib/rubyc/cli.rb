@@ -10,11 +10,15 @@ module Rubyc
       super
       libs = options[:require] ? options[:require].strip.split(":") : []
       libs.each {|lib| require lib}
+      $stdout.sync = true
     end
     
-    
-    $stdout.sync = true
-    desc :map, "Apply Enumerable#map on each line"
+    def help(*args)
+      super *args
+    end
+
+    desc "map BLOCK", "Enumerable#map"
+    long_desc "THIS IS A LONG DESCRIPTION" 
     def map(code)
       proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
       $stdin.each_line.each_with_index do |line, index|
@@ -22,7 +26,7 @@ module Rubyc
       end
     end
 
-    desc :sum, "Calculate the sum of Numeric expressed on each line"
+    desc "sum BLOCK", "Active Support Enumerable#sum"
     def sum(code = nil)
       code ||= "line"
       proc = eval("Proc.new{|line| l = line; #{code}}")
@@ -32,7 +36,7 @@ module Rubyc
       puts sum
     end
 
-    desc :select, "Apply Enumerable#select on each line"
+    desc "select BLOCK", "Enumerable#select"
     def select(code)
       proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
       $stdin.each_line.each_with_index do |line, index|
@@ -40,7 +44,15 @@ module Rubyc
       end
     end
 
-    desc :count_by, "Count the number of lines that have the same property. The property is defined by the return value of the given the block"
+    desc "reject BLOCK", "Enumerable#reject"
+    def reject(code)
+      proc = eval( "Proc.new{|line,index| l = line; lnum = index + 1;#{code}}" )
+      $stdin.each_line.each_with_index do |line, index|
+        puts line unless proc.call(line.chomp, index)
+      end
+    end
+    
+    desc "count_by BLOCK", "Count the number of lines that have the same property. The property is defined by the return value of the given the block"
     def count_by(code = nil)
       code ||= "line"
       proc = eval("Proc.new{|line| l = line; #{code}}")
@@ -50,7 +62,7 @@ module Rubyc
       puts counts.to_yaml
     end
 
-    desc :sort_by, "Sort by"
+    desc "sort_by BLOCK", "Enumerable#sort_by"
     def sort_by(code = nil)
       code ||= "line"
       proc = eval("Proc.new{|line| l = line; #{code}}")
@@ -60,14 +72,14 @@ module Rubyc
       puts counts
     end
 
-    desc :grep, "Grep"
+    desc "grep BLOCK", "Enumerable#grep"
     def grep(pattern, code = nil)
       pattern = eval(pattern)
       proc = code ? eval("Proc.new{|line| l = line; #{code}}") : nil
       puts $stdin.grep(pattern, &proc)
     end
 
-    desc :scan, "Scan"
+    desc "scan MATCHER BLOCK", "String#scan"
     def scan(pattern, code = nil)
       pattern = eval(pattern)
       proc = code ? eval("Proc.new{|*match| m = match; #{code}}") : nil
@@ -75,17 +87,17 @@ module Rubyc
       str.scan(pattern, &proc)
     end
 
-    desc :uniq, "uniq"
+    desc "uniq", "Enumerable#uniq"
     def uniq
       puts $stdin.to_a.uniq
     end
 
-    desc :compact, "Remove empty lines"
+    desc "compact", "Remove empty lines"
     def compact
       $stdin.each{ |line| puts line if line.chomp! != ""}
     end
 
-    desc :merge, "Merge consecutive lines"
+    desc "merge NB_LINES [SEPARATOR]", "Merge NB_LINES consecutive lines using SEPARATOR. If SEPARATOR is not given \',\' is used"
     def merge(nb_lines, sep = ",")
       $stdin.each_slice(nb_lines.to_i){|chunk| puts chunk.map{|elem| elem.strip}.join(sep)}
     end

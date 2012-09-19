@@ -22,6 +22,13 @@ describe "A rubyc cli" do
     out_str.must_equal "Black Jack\n"
   end
 
+  it "should reject line from stdin and send it to stdout" do
+    out_str = local_io("John Doe\nBlack Jack\nDr Dolittle\nCracker Jack") do
+      @cli.reject('l =~ /Jack/ && lnum == 2 && index == 1')
+    end
+    out_str.must_equal "John Doe\nDr Dolittle\nCracker Jack\n"
+  end
+
   it "should sum line from stdin and send it to stdout" do
     out_str = local_io("1\n2\nthird\n4") do
       @cli.sum('l.to_i * 2')
