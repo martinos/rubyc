@@ -77,16 +77,23 @@ phone_numbers: 47
 ```
 
 
-Here are the currently supported methods:
+You can see all the currently supported methods by calling rubyc's help:
 ```
-compact      # Remove empty lines
-count_by     # Count the number of lines that have the same property. The property is defined by the return value of the given the block.
-grep         # Enumerable#grep the first argument is the pattern matcher and the second is the block executed on each line.
-map          # Apply Enumerable#map on each line and outputs the results of the block by calling to_s on the returned object.
-merge        # Merge consecutive lines
-scan         # String#scan
-select       # Enumerable#select
-sort_by      # Emumerable#sort_by
-sum          # Rails Enumerable#sum
-uniq         # uniq
+$ rubyc help
+Tasks:
+  rubyc compact                     # Remove empty lines
+  rubyc count_by BLOCK              # Count the number of lines that have the same property. The property is defined by the return value of the gi...
+  rubyc grep BLOCK                  # Enumerable#grep
+  rubyc help [TASK]                 # Describe available tasks or one specific task
+  rubyc map BLOCK                   # Enumerable#map
+  rubyc merge NB_LINES [SEPARATOR]  # Merge NB_LINES consecutive lines using SEPARATOR. If SEPARATOR is not given ',' is used
+  rubyc reject BLOCK                # Enumerable#reject
+  rubyc scan MATCHER BLOCK          # String#scan
+  rubyc select BLOCK                # Enumerable#select
+  rubyc sort_by BLOCK               # Enumerable#sort_by
+  rubyc sum BLOCK                   # Active Support Enumerable#sum
+  rubyc uniq                        # Enumerable#uniq
+
+Options:
+  -r, [--require=REQUIRE]  
 ```
