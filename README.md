@@ -16,7 +16,7 @@ Rubys supports some Enumerable methods applied to each line to the stdin stream.
 
 Rubyc gives you the __line__ variable and ıts shorter alias __l__ to represent the current line on which Rubyc is iterating. 
 
-The __index__ and __lnum__ variable are also available to you. The __index__ variable represents the index of the line starting at 0 whereas __lnum__ is the line number which starts at 1. 
+The __index__ and __lnum__ variables are also available to you. The __index__ variable represents the index of the line starting at 0 whereas __lnum__ is the line number which starts at 1. 
 ## Examples
 ### Use Case: Upcasing
 Upcase what is comming from stdin.
@@ -77,16 +77,23 @@ phone_numbers: 47
 ```
 
 
-Here are the currently supported methods:
+You can see all the currently supported methods by calling rubyc's help:
 ```
-compact      # Remove empty lines
-count_by     # Count the number of lines that have the same property. The property is defined by the return value of the given the block.
-grep         # Enumerable#grep the first argument is the pattern matcher and the second is the block executed on each line.
-map          # Apply Enumerable#map on each line and outputs the results of the block by calling to_s on the returned object.
-merge        # Merge consecutive lines
-scan         # String#scan
-select       # Enumerable#select
-sort_by      # Emumerable#sort_by
-sum          # Rails Enumerable#sum
-uniq         # uniq
+$ rubyc help
+Tasks:
+  rubyc compact                     # Remove empty lines
+  rubyc count_by BLOCK              # Count the number of lines that have the same property. The property is defined by the return value of the gi...
+  rubyc grep BLOCK                  # Enumerable#grep
+  rubyc help [TASK]                 # Describe available tasks or one specific task
+  rubyc map BLOCK                   # Enumerable#map
+  rubyc merge NB_LINES [SEPARATOR]  # Merge NB_LINES consecutive lines using SEPARATOR. If SEPARATOR is not given ',' is used
+  rubyc reject BLOCK                # Enumerable#reject
+  rubyc scan MATCHER BLOCK          # String#scan
+  rubyc select BLOCK                # Enumerable#select
+  rubyc sort_by BLOCK               # Enumerable#sort_by
+  rubyc sum BLOCK                   # Active Support Enumerable#sum
+  rubyc uniq                        # Enumerable#uniq
+
+Options:
+  -r, [--require=REQUIRE]  
 ```
