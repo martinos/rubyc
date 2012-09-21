@@ -9,7 +9,9 @@ platforms :mri_18 do
 end
 
 platforms :mri_19 do
-  gem 'ruby-debug19'
+  group :development do
+    gem 'ruby-debug19'
+  end
 end
 
 group :development do
