@@ -6,15 +6,14 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'rubyc/colorize_stack'
 
-module SpecHelper
-  def local_io(in_str)
-    old_stdin, old_stdout = $stdin, $stdout 
-    $stdin = StringIO.new(in_str)
-    $stdout = StringIO.new
+module SpecHelper  
+  def new_local_io(cli, in_str)
+    in_io = StringIO.new(in_str)
+    out_io = StringIO.new
+    @cli.in_encoder = Rubyc::StringEncoder.new(in_io)
+    @cli.out_encoder = Rubyc::StringEncoder.new(out_io)
     yield
-    out_str = $stdout.string
-    $stdin, $stdout = old_stdin, old_stdout
-    out_str
+    out_io.string
   end
 end
 MiniTest::Unit.output.extend MiniTest::ColorizeStack

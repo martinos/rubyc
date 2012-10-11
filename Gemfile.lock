@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rubyc (0.1.2)
+    rubyc (0.2.alpha)
       thor (~> 0.15)
 
 GEM
