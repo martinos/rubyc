@@ -18,7 +18,6 @@ group :development do
   gem 'pry'
   gem 'guard'
   gem 'guard-minitest'
-  gem 'rb-fsevent', '~> 0.9.1'
-  # gem 'growl', '1.0.3'
-  # gem 'ruby_gntp', '0.3.4'
+  gem 'rb-fsevent'
+  gem 'ruby_gntp'
 end
