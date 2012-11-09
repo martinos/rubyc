@@ -48,7 +48,7 @@ The Rubyc way:
 ``` bash
 $ cat file1.csv | rubyc map -r csv 'csv = CSV.parse_line(l); [csv[1], csv[2]]'
 ```
-NOTE: -r is an alias for the --require= option indicates the gems needed for the exectution of the script. Note that for multiple require, gems must me separated with a :.
+NOTE: -r is an alias for the --require= option indicates the gems needed for the exectution of the script. Note that for multiple require, gem names must me separated with a colon '__:__'.
 
 ### Use Case: Colorize Stderr
 The shell way:
