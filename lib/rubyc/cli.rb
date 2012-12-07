@@ -92,6 +92,16 @@ module Rubyc
       puts $stdin.to_a.uniq
     end
 
+    desc "uniq_by BLOCK", "TODO"
+    def uniq_by(code = nil)
+      code ||= "line"
+      proc = eval("Proc.new{|line| l = line; #{code}}")
+      counts = $stdin.uniq_by do |line|
+        proc.call(line.chomp)
+      end
+      puts counts
+    end
+
     desc "compact", "Remove empty lines"
     def compact
       $stdin.each{ |line| puts line if line.chomp! != ""}

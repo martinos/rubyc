@@ -73,6 +73,28 @@ describe "A rubyc cli" do
     out_str.must_equal "1\n2\n3\n"
   end
 
+  it "should keep unique records grouped by a certain algorithm" do
+    out_str = local_io("aaaCoco\nbbbMomo\naaaBato\nbbbToto") do
+      @cli.uniq_by('[l[0,3], l[3..-1]]')
+    end
+    out_str.must_equal "Coco\nMomo\n"
+  end
+
+  it "should merge lines in group of n output them to stdout" do
+    out_str = local_io("1\n2\n3\n4\n5\n6\n7\n8") do
+      @cli.merge(3, ",")
+    end
+    out_str.must_equal "1,2,3\n4,5,6\n7,8\n"
+  end
+
+
+  it "should merge lines in group of n output them to stdout" do
+    out_str = local_io("1\n2\n3\n4\n5\n6\n7\n8") do
+      @cli.merge(3, ",")
+    end
+    out_str.must_equal "1,2,3\n4,5,6\n7,8\n"
+  end
+
   it "should merge lines in group of n output them to stdout" do
     out_str = local_io("1\n2\n3\n4\n5\n6\n7\n8") do
       @cli.merge(3, ",")

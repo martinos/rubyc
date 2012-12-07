@@ -26,4 +26,11 @@ module Enumerable
       inject { |sum, element| sum + element } || identity
     end
   end
+
+  def uniq_by
+    each_with_object({}) do |obj, memo|
+      val, data = yield obj
+      memo[val] ||= data
+    end.values
+  end
 end
