@@ -5,12 +5,13 @@ require 'rubyc/core_extensions'
 module Rubyc
   class CLI < Thor
     class_option :require, :aliases => '-r'
-    
+    class_option :sync, :type => :boolean, :default => false, :aliases => '-s', :banner => 'Synchronize stdout'
+
     def initialize(*args)
       super
       libs = options[:require] ? options[:require].strip.split(":") : []
       libs.each {|lib| require lib}
-      $stdout.sync = true
+      $stdout.sync = options[:sync]
     end
     
     def help(*args)
