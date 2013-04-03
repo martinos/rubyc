@@ -18,6 +18,6 @@ group :development do
   gem 'pry'
   gem 'guard'
   gem 'guard-minitest'
-  gem 'rb-fsevent'
-  gem 'ruby_gntp'
+  gem 'rb-fsevent', :require => false
+  gem 'growl'
 end

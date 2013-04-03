@@ -77,7 +77,9 @@ describe "A rubyc cli" do
     out_str = local_io("aaaCoco\nbbbMomo\naaaBato\nbbbToto") do
       @cli.uniq_by('[l[0,3], l[3..-1]]')
     end
-    out_str.must_equal "Coco\nMomo\n"
+    # We test this way since uniq_by uses hashes and on Ruby 1.8.7 hashes are not ordered
+    out_array = out_str.split("\n").sort
+    out_array.must_equal ["Coco", "Momo"]
   end
 
   it "should merge lines in group of n output them to stdout" do
