@@ -28,9 +28,10 @@ module Enumerable
   end
 
   def uniq_by
-    each_with_object({}) do |obj, memo|
+    each_with_index.inject({}) do |memo, (obj, index)|
       val, data = yield obj
       memo[val] ||= data
+      memo
     end.values
   end
 end
