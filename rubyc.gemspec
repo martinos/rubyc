@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Rubyc::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Martin Chabot"]
+  s.licenses     = ["MIT"]
   s.email       = ["chabotm@gmail.com"]
   s.homepage    = "https://github.com/martinos/rubyc"
   s.summary     = %q{Adds Ruby's powers to the command line}
