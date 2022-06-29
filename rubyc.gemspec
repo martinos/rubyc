@@ -12,11 +12,10 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/martinos/rubyc"
   s.summary     = %q{Adds Ruby's powers to the command line}
   s.description = %q{Adds Ruby's powers to the command line}
-  s.rubyforge_project = "rubyc"
 
   s.add_dependency "thor", "~> 0.15"
   s.add_development_dependency 'rake'
-  s.add_development_dependency "bundler", "~> 1.0"
+  s.add_development_dependency "bundler", "~> 2.0"
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'aruba'
   s.add_development_dependency 'colorize'
